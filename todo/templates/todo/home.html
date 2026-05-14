@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo App</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            background:#f4f4f4;
+            padding:40px;
+        }
+
+        .container{
+            background:white;
+            padding:20px;
+            width:400px;
+            margin:auto;
+            border-radius:10px;
+        }
+
+        input{
+            width:70%;
+            padding:10px;
+        }
+
+        button{
+            padding:10px;
+            background:black;
+            color:white;
+            border:none;
+        }
+
+        .task{
+            margin-top:10px;
+            padding:10px;
+            background:#eee;
+            border-radius:5px;
+        }
+
+        a{
+            float:right;
+            color:red;
+            text-decoration:none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Todo List</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Enter task">
+        <button type="submit">Add</button>
+    </form>
+
+    {% for task in tasks %}
+
+    <div class="task">
+        {{ task.title }}
+        <a href="/delete/{{ task.id }}/">Delete</a>
+    </div>
+
+    {% endfor %}
+
+</div>
+
+</body>
+</html>
